@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from portal.models import Artigo, Evento
+from portal.models import Artigo, Evento, Autor
 
 # Create your views here.
 def artigos(request):
@@ -19,3 +19,12 @@ def eventos(request):
     }
     
     return render(request, 'eventos.html', context)
+
+def autores(request):
+    autores = Autor.objects.all()
+    
+    context = {
+        'autores': autores
+    }
+    
+    return render(request, 'autores.html', context)

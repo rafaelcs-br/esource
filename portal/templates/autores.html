@@ -15,7 +15,7 @@
             <h1>Bem-vindo ao ESource</h1>
             <h3>Seu portal para eventos e artigos científicos voltados para Engenharia de Software(ES).</h3>
         </div>
-        
+
         <div class="card text-center">
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
@@ -23,41 +23,40 @@
                         <a class="nav-link" href="{% url 'portal:artigos' %}">Artigos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="true">Eventos</a>
+                        <a class="nav-link" href="{% url 'portal:eventos' %}">Eventos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'portal:autores' %}">Autores</a>
+                        <a class="nav-link active" aria-current="true">Autores</a>
                     </li>
                 </ul>
             </div>
             <div class="card-body">
-                <h2 class="card-title">Eventos</h2>
+                <h2 class="card-title">Autores</h2>
                 <table class="table table-hover table-striped align-middle">
                     <thead>
                         <tr>
-                            <th style="width: 40%">Nome</th>
-                            <th style="width: 20%">Sigla</th>
-                            <th style="width: 10%">Data Realização</th>
-                            <th style="width: 10%">Opções</th>
+                            <th  style="width: 40%">Nome</th>
+                            <th  style="width: 30%">Citação</th>
+                            <th  style="width: 10%">Instituição</th>
+                            <th  style="width: 20%">Unidade Federativa</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for evento in eventos %}
+                        {% for autor in autores %}
                         <tr>
-                            <td class="fw-bold text-dark">{{ evento.nome }}</td>
-                            <td>{{ evento.sigla }}</td>
-                            <td>{{ evento.data_realizacao|date:"d/m/Y"|default:"---" }}</td>
-                            <td class="text-center">
-                            </td>
+                            <td class="fw-bold text-dark">{{ autor.nome }}</td>
+                            <td>{{ autor.citacao }}</td>
+                            <td>{{ autor.instituicao }}</td>
+                            <td>{{ autor.unidade_federativa }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
                     <tfoot>
                         <tr>
                             <th>Nome</th>
-                            <th>Sigla</th>
-                            <th>Data Realização</th>
-                            <th>Opções</th>
+                            <th>Citação</th>
+                            <th>Instituição</th>
+                            <th>Unidade Federativa</th>
                         </tr>
                     </tfoot>
                 </table>
