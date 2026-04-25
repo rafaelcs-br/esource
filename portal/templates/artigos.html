@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESource</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
+</head>
+
+<body>
+
+    <div class="container mt-5 pt-4 mb-5 pb-4">
+        <div class="text-center">
+            <h1>Bem-vindo ao ESource</h1>
+            <h3>Seu portal para eventos e artigos científicos voltados para Engenharia de Software(ES).</p>
+        </div>
+
+        <div class="card text-center">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="true">Artigos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Autores</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title">Lista de Artigos</h2>
+                <table class="table table-hover table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%">Título</th>
+                            <th style="width: 25%">Autores</th>
+                            <th style="width: 15%">Data Publicação</th>
+                            <th style="width: 20%">Subáreas</th>
+                            <th style="width: 10%">Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for artigo in artigos %}
+                        <tr>
+                            <td class="fw-bold text-dark">{{ artigo.titulo }}</td>
+                            <td>
+                                {% for autor in artigo.autor.all %}
+                                    {{ autor.citacao }}{% if not forloop.last %}, {% endif %}
+                                {% empty %}
+                                    <em>Sem Autores</em>
+                                {% endfor %}
+                            </td>
+                            <td>{{ artigo.data_publicacao|date:"d/m/Y"|default:"---" }}</td>
+                            <td>
+                                {% for subarea in artigo.subareas.all %}
+                                    <span class="badge text-bg-primary">
+                                        {{ subarea.nome }}
+                                    </span>
+                                {% endfor %}
+                            </td>
+                            <td class="text-center">
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Título</th>
+                            <th>Autores</th>
+                            <th>Data Publicação</th>
+                            <th>Subáreas</th>
+                            <th>Opções</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
