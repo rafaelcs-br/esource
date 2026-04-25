@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from portal.models import Artigo, Evento, Autor
 
 # Create your views here.
@@ -28,3 +28,12 @@ def autores(request):
     }
     
     return render(request, 'autores.html', context)
+
+def detalhes_artigo(request, artigo_id):
+    artigo = get_object_or_404(Artigo, id=artigo_id)
+    
+    context = {
+        'artigo': artigo
+    }
+    
+    return render(request, 'artigos/detalhes_artigo.html', context)
